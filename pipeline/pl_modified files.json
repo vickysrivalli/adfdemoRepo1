@@ -1,0 +1,50 @@
+{
+	"name": "pl_modified files",
+	"properties": {
+		"activities": [
+			{
+				"name": "Get Metadatamodified files",
+				"type": "GetMetadata",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "ds_blob_input_folder",
+						"type": "DatasetReference"
+					},
+					"fieldList": [
+						"itemName",
+						"exists",
+						"lastModified"
+					],
+					"storeSettings": {
+						"type": "AzureBlobStorageReadSettings",
+						"recursive": true,
+						"modifiedDatetimeStart": {
+							"value": "@(startOfDay()adddays(utcNow(),-1))",
+							"type": "Expression"
+						},
+						"modifiedDatetimeEnd": {
+							"value": "@(startOfDay()adddays(utcNow())",
+							"type": "Expression"
+						},
+						"enablePartitionDiscovery": false
+					},
+					"formatSettings": {
+						"type": "DelimitedTextReadSettings"
+					}
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2022-08-27T17:00:09Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

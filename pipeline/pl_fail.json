@@ -1,0 +1,72 @@
+{
+	"name": "pl_fail",
+	"properties": {
+		"activities": [
+			{
+				"name": "Switch1",
+				"type": "Switch",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"on": {
+						"value": "@pipeline().parameters.country_name",
+						"type": "Expression"
+					},
+					"cases": [
+						{
+							"value": "India",
+							"activities": [
+								{
+									"name": "Waitindia",
+									"type": "Wait",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"waitTimeInSeconds": 2
+									}
+								}
+							]
+						},
+						{
+							"value": "USA",
+							"activities": [
+								{
+									"name": "WaitUSA",
+									"type": "Wait",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"waitTimeInSeconds": 2
+									}
+								}
+							]
+						}
+					],
+					"defaultActivities": [
+						{
+							"name": "Failerror",
+							"type": "Fail",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"message": "country not supported",
+								"errorCode": "1000"
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"country_name": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "UDEMY"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-08-26T04:16:47Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

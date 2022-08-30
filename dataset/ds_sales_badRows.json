@@ -1,0 +1,38 @@
+{
+	"name": "ds_sales_badRows",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sql_adf_demo_sales",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "SaleDate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SalesItem",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Country",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Quantity",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Filename",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tbl_Sales"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

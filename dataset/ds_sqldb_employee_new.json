@@ -1,0 +1,39 @@
+{
+	"name": "ds_sqldb_employee_new",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sql_adf_demo_sales",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Gender",
+				"type": "char"
+			},
+			{
+				"name": "Salary",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Dept",
+				"type": "char"
+			},
+			{
+				"name": "DOJ",
+				"type": "date"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "dept"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

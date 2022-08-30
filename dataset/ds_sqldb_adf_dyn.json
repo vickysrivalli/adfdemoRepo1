@@ -1,0 +1,35 @@
+{
+	"name": "ds_sqldb_adf_dyn",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sql_adf_demo_sales",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"tablename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Dept_id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Dept_Name",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": {
+				"value": "@dataset().tablename",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

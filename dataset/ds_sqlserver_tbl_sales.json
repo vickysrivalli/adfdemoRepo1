@@ -1,0 +1,42 @@
+{
+	"name": "ds_sqlserver_tbl_sales",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_SqlServer",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "wafastudies"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "SaleDate",
+				"type": "date"
+			},
+			{
+				"name": "SalesItem",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Country",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Quantity",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Filename",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tbl_Sales"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

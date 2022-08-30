@@ -1,0 +1,37 @@
+{
+	"name": "pl_setvariable",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "filename",
+					"value": {
+						"value": "@concat(pipeline().parameters.trig_filename,string(utcnow()))",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"trig_filename": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"filename": {
+				"type": "String",
+				"defaultValue": "xyz"
+			}
+		},
+		"folder": {
+			"name": "UDEMY"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-08-25T14:09:58Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

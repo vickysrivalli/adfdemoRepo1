@@ -1,0 +1,112 @@
+{
+	"name": "DF_validation_Error_rows",
+	"properties": {
+		"folder": {
+			"name": "Wafastudies"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_blob_salesIndia2022_csv",
+						"type": "DatasetReference"
+					},
+					"name": "sourcesalecsv"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_sales_badRows",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_sales_badRows",
+						"type": "DatasetReference"
+					},
+					"name": "sink2"
+				}
+			],
+			"transformations": [
+				{
+					"name": "split1"
+				},
+				{
+					"name": "filenamecolumnforErrorRows"
+				},
+				{
+					"name": "filenamecolunmgoodrows"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          SaleDate as string,",
+				"          SalesItem as string,",
+				"          Country as string,",
+				"          Quantity as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> sourcesalecsv",
+				"sourcesalecsv split(isNull(toDate(SaleDate,'dd-MMM-yyyy')),",
+				"     disjoint: false) ~> split1@(ErrorRows, GoodRows)",
+				"split1@ErrorRows derive(Filename = 'Sales_india_2022.csv') ~> filenamecolumnforErrorRows",
+				"split1@GoodRows derive(Filename = 'Sales_india_2022.csv',",
+				"          SaleDate = toDate(SaleDate, 'dd-MMM-yyyy'),",
+				"          Quantity = toInteger(Quantity)) ~> filenamecolunmgoodrows",
+				"filenamecolumnforErrorRows sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          SaleDate as string,",
+				"          SalesItem as string,",
+				"          Country as string,",
+				"          Quantity as string,",
+				"          Filename as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          SaleDate,",
+				"          SalesItem,",
+				"          Country,",
+				"          Quantity = Country,",
+				"          Filename",
+				"     )) ~> sink1",
+				"filenamecolunmgoodrows sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          SaleDate as string,",
+				"          SalesItem as string,",
+				"          Country as string,",
+				"          Quantity as string,",
+				"          Filename as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          SaleDate,",
+				"          SalesItem,",
+				"          Country,",
+				"          Quantity,",
+				"          Filename",
+				"     )) ~> sink2"
+			]
+		}
+	}
+}

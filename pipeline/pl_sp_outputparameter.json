@@ -1,0 +1,35 @@
+{
+	"name": "pl_sp_outputparameter",
+	"properties": {
+		"activities": [
+			{
+				"name": "Lookup1",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"sqlReaderQuery": "declare @EmployeeCount int\nexecute spGetEmployeeCountByGender 'Male',@EmployeeCount\nselect @EmployeeCount  as EmployeeCount",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "ds_sqlserver_spoutputparameter",
+						"type": "DatasetReference"
+					}
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2022-08-30T09:42:35Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

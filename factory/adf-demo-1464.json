@@ -1,0 +1,9 @@
+{
+	"name": "adf-demo-1464",
+	"location": "centralus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "62492c1e-e92c-479c-b34a-db23efc083fb",
+		"tenantId": "39e44946-32f2-40b8-9967-c55761469261"
+	}
+}
