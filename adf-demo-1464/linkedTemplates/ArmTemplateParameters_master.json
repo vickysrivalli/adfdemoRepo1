@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-demo-1464"
+		},
+		"ls_SqlServer_connectionString": {
+			"value": ""
+		},
+		"ls_adls_adfdemodls_accountKey": {
+			"value": ""
+		},
+		"ls_blob_adfstorage1267_connectionString": {
+			"value": ""
+		},
+		"ls_sql_adf_demo_sales_connectionString": {
+			"value": ""
+		},
+		"ls_adls_adfdemodls_properties_typeProperties_url": {
+			"value": "https://adfdemodls.dfs.core.windows.net/"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
