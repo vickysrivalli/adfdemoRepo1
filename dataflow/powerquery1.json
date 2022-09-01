@@ -1,0 +1,26 @@
+{
+	"name": "powerquery1",
+	"properties": {
+		"type": "WranglingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"name": "ds_blob_emp_details_csv",
+					"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~>  ds_blob_emp_details_csv",
+					"dataset": {
+						"referenceName": "ds_blob_emp_details_csv",
+						"type": "DatasetReference"
+					}
+				},
+				{
+					"name": "ds_sqldb_employee_new",
+					"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~>  ds_sqldb_employee_new",
+					"dataset": {
+						"referenceName": "ds_sqldb_employee_new",
+						"type": "DatasetReference"
+					}
+				}
+			]
+		}
+	}
+}
